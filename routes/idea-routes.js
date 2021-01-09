@@ -14,6 +14,16 @@ import {
 
 const { ALL, DELETE, PATCH, PUT } = eHATEOAS;
 
+/*
+  Structure of an idea object:
+  {
+    "idea": "An idea...",
+    "ideaist": "Name of ideaist",
+    "category": "cat_123456",
+    "creation_date": "2021-01-09T04:13:04.550Z", // This is set server side
+    "_id": "idea_123456", // This is set server side.
+  }
+*/
 export const routes = [
   {
     url: "/api/idea",

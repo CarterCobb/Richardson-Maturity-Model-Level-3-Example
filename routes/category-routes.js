@@ -9,7 +9,14 @@ import {
 import { getCategoriesFromFile, writeCategoriesToFile } from "../repo.js";
 
 const { ALL, DELETE, PATCH, PUT } = eHATEOAS;
-
+/*
+  Structure of a category object:
+  {
+    "name": "category name...",
+    "creation_date": "2021-01-09T04:13:04.550Z", // This is set server side
+    "_id": "cat_123456", // This is set server side
+  }
+*/
 export const routes = [
   {
     url: "/api/cat",
