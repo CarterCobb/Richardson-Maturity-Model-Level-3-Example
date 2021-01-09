@@ -109,6 +109,16 @@ export const hateoasActions = (item, caller, type, params = []) => {
           method: "DELETE",
         },
       }),
+      ...(params.includes("cat") &&
+        item.category && {
+          view_category: {
+            href: `${urlPrefix}:${PORT}/api/cat/${item.category
+              .split("_")
+              .pop()}`,
+            description: "get the category object for this idea",
+            method: "GET",
+          },
+        }),
     };
   }
 };

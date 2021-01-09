@@ -12,7 +12,7 @@ import {
   getCategoriesFromFile,
 } from "../repo.js";
 
-const { ALL, DELETE, PATCH, PUT } = eHATEOAS;
+const { ALL, DELETE, PATCH, PUT, CAT } = eHATEOAS;
 
 /*
   Structure of an idea object:
@@ -68,6 +68,7 @@ export const routes = [
             DELETE,
             PATCH,
             PUT,
+            CAT
           ]),
         });
       } catch (err) {
@@ -117,6 +118,7 @@ export const routes = [
             PUT,
             PATCH,
             DELETE,
+            CAT
           ]),
         });
       } catch (err) {
@@ -177,6 +179,7 @@ export const routes = [
             ALL,
             PATCH,
             DELETE,
+            CAT
           ]),
         });
       } catch (err) {
@@ -237,6 +240,7 @@ export const routes = [
             ALL,
             PUT,
             DELETE,
+            CAT
           ]),
         });
       } catch (err) {
