@@ -94,7 +94,7 @@ export const routes = [
           idea.category = undefined;
         } else {
           if (
-            categories.filter((cat) => cat._id === body.category).length === 0
+            categories.filter((cat) => cat._id === req.body.category).length === 0
           ) {
             return res.sendStatus(404);
           }
