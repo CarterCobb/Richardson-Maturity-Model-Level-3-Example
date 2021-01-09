@@ -1,7 +1,7 @@
 {
-  "name": "rmm-type-2",
+  "name": "rmm-level-3",
   "version": "1.0.0",
-  "description": "",
+  "description": "This is a Node.js with Express.js example of a level 3 API in the Richardson Maturity Model.",
   "main": "server.js",
   "type": "module",
   "scripts": {
