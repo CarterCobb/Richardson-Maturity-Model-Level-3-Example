@@ -1,5 +1,5 @@
-import eRequestType from "../eRequestType.js";
-import eHATEOAS from "../eHATEOAS.js";
+import eRequestType from "../enums/eRequestType.js";
+import eHATEOAS from "../enums/eHATEOAS.js";
 import {
   makeId,
   generate400Response,
