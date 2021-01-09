@@ -7,6 +7,7 @@ import {
   hateoasActions,
 } from "../helper-functions.js";
 import { getCategoriesFromFile, writeCategoriesToFile } from "../repo.js";
+import { json } from "body-parser";
 
 const { ALL, DELETE, PATCH, PUT } = eHATEOAS;
 
@@ -36,6 +37,24 @@ export const routes = [
         return res.status(400).json(generate400Response());
       }
       try {
+        const all_data = getCategoriesFromFile();
+        if (!(all_data instanceof Array)) {
+          return res.sendStatus(422);
+        } else {
+          if (all_data.filter((cat) => cat._id === `cat_${id}`).length === 0) {
+            return res.sendStatus(404);
+          }
+        }
+        const category = all_data.find((cat) => cat._id === `cat_${id}`);
+        return res.status(200).json({
+          data: category,
+          _links: hateoasActions(category, `api/cat/${id}`, "cat", [
+            ALL,
+            DELETE,
+            PATCH,
+            PUT,
+          ]),
+        });
       } catch (err) {
         return sendError(res, 500)(err);
       }
@@ -60,7 +79,15 @@ export const routes = [
           categories.push(category);
         }
         writeCategoriesToFile(categories);
-        return res.status(201).json(category);
+        return res.status(201).json({
+          data: category,
+          _links: hateoasActions(category, "api/cat", "cat", [
+            ALL,
+            DELETE,
+            PATCH,
+            PUT,
+          ]),
+        });
       } catch (err) {
         return sendError(res, 500)(err);
       }
@@ -84,6 +111,7 @@ export const routes = [
       try {
         var categories = getCategoriesFromFile();
         var old_category = {};
+        var final_obj = {};
         if (!(categories instanceof Array)) {
           categories = [];
         } else {
@@ -94,10 +122,18 @@ export const routes = [
           }
           old_category = categories.find((cat) => cat._id === `cat_${id}`);
           categories = categories.filter((cat) => cat._id !== `cat_${id}`);
-          categories.push({ ...old_category, name: body.name });
+          final_obj = { ...old_category, name: body.name };
+          categories.push(final_obj);
         }
         writeCategoriesToFile(categories);
-        return res.status(200).json({ ...old_category, name: body.name });
+        return res.status(200).json({
+          data: final_obj,
+          _links: hateoasActions(final_obj, `api/cat/${id}`, "cat", [
+            ALL,
+            DELETE,
+            PATCH,
+          ]),
+        });
       } catch (err) {
         return sendError(res, 500)(err);
       }
@@ -138,7 +174,16 @@ export const routes = [
           }
           categories.push(mutate_cat);
           writeCategoriesToFile(categories);
-          return res.status(200).json(mutate_cat);
+          return res
+            .status(200)
+            .json({
+              data: mutate_cat,
+              _links: hateoasActions(mutate_cat, `api/cat/${id}`, "cat", [
+                ALL,
+                DELETE,
+                PUT,
+              ]),
+            });
         }
       } catch (err) {
         return sendError(res, 500)(err);
