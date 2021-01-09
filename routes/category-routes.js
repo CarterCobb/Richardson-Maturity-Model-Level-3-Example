@@ -7,7 +7,6 @@ import {
   hateoasActions,
 } from "../helper-functions.js";
 import { getCategoriesFromFile, writeCategoriesToFile } from "../repo.js";
-import { json } from "body-parser";
 
 const { ALL, DELETE, PATCH, PUT } = eHATEOAS;
 
