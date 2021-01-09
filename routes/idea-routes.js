@@ -68,7 +68,7 @@ export const routes = [
             DELETE,
             PATCH,
             PUT,
-            CAT
+            ...(Object.keys(idea).includes("category") ? [CAT] : []),
           ]),
         });
       } catch (err) {
@@ -95,7 +95,8 @@ export const routes = [
           idea.category = undefined;
         } else {
           if (
-            categories.filter((cat) => cat._id === req.body.category).length === 0
+            categories.filter((cat) => cat._id === req.body.category).length ===
+            0
           ) {
             return res.sendStatus(404);
           }
@@ -118,7 +119,7 @@ export const routes = [
             PUT,
             PATCH,
             DELETE,
-            CAT
+            ...(Object.keys(idea).includes("category") ? [CAT] : []),
           ]),
         });
       } catch (err) {
@@ -179,7 +180,7 @@ export const routes = [
             ALL,
             PATCH,
             DELETE,
-            CAT
+            ...(Object.keys(idea).includes("category") ? [CAT] : []),
           ]),
         });
       } catch (err) {
@@ -240,7 +241,7 @@ export const routes = [
             ALL,
             PUT,
             DELETE,
-            CAT
+            ...(Object.keys(idea).includes("category") ? [CAT] : []),
           ]),
         });
       } catch (err) {
