@@ -6,7 +6,7 @@ const eRequestType = {
   PUT: "put",
   DELETE: "delete",
   PATCH: "patch",
-  CAT: "cat"
+  CAT: "cat",
 };
 
 export default eRequestType;

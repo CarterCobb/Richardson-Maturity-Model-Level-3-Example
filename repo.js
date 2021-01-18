@@ -1,6 +1,7 @@
 import path, { dirname } from "path";
 import { fileURLToPath } from "url";
 import fs from "fs";
+
 export const __dirname = dirname(fileURLToPath(import.meta.url));
 
 /**
@@ -46,4 +47,3 @@ export const writeCategoriesToFile = (categories) => {
     "utf-8"
   );
 };
-

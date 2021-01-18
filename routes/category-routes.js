@@ -180,16 +180,14 @@ export const routes = [
           }
           categories.push(mutate_cat);
           writeCategoriesToFile(categories);
-          return res
-            .status(200)
-            .json({
-              data: mutate_cat,
-              _links: hateoasActions(mutate_cat, `api/cat/${id}`, "cat", [
-                ALL,
-                DELETE,
-                PUT,
-              ]),
-            });
+          return res.status(200).json({
+            data: mutate_cat,
+            _links: hateoasActions(mutate_cat, `api/cat/${id}`, "cat", [
+              ALL,
+              DELETE,
+              PUT,
+            ]),
+          });
         }
       } catch (err) {
         return sendError(res, 500)(err);

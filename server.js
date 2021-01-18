@@ -1,6 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
 import Routes from "./route-config.js";
+
 const app = express();
 export const PORT = 6969;
 
